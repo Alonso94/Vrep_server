@@ -5,6 +5,7 @@ LABEL maintainer="ay20-5-1994@hotmail.com"
 RUN apt-get update
 RUN apt-get install -y \
     cmake \
+    git \
     libopenmpi-dev \
     python3-dev \
     python3-pip \
@@ -32,6 +33,8 @@ RUN pip3 install \
 
 RUN wget http://coppeliarobotics.com/files/V-REP_PRO_EDU_V3_5_0_Linux.tar.gz
 RUN tar -xf V-REP_PRO_EDU_V3_5_0_Linux.tar.gz
+
+RUN git clone https://github.com/Alonso94/Vrep_server
 
 RUN echo 'export QT_DEBUG_PLUGINS=1' >> ~/.bashrc
 RUN echo 'export PATH=/V-REP_PRO_EDU_V3_5_0_Linux/:$PATH' >> ~/.bashrc#
