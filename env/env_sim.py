@@ -19,10 +19,11 @@ class rozum_sim:
         self.scene_file = "/Vrep_server/env/rozum_model.ttt"
 
         os.chdir(self.vrep_root)
-        os.system("xvfb-run ./vrep.sh -h -s " + self.scene_file + " &")
+        os.system("xvfb-run --auto-servernum --server-num=1 -s \"-screen 0 640x480x24\" ./vrep.sh -h -s " + self.scene_file + " &")
 
         vrep.simxFinish(-1)
         time.sleep(1)
+
         # get the ID of the running simulation
         self.ID = vrep.simxStart('172.17.0.1', 19999, True, False, 5000, 5)
         # check the connection
@@ -32,7 +33,7 @@ class rozum_sim:
             sys.exit("Error")
         # get handles
         # for camera
-        self.cam_handle = self.get_handle('Camera')
+        self.cam_handle = self.get_handle('Vision_sensor')
         (code, res, im) = vrep.simxGetVisionSensorImage(self.ID, self.cam_handle, 0, const_v.simx_opmode_streaming)
 
         # joints
@@ -71,8 +72,8 @@ class rozum_sim:
         print(self.tip_position)
         print(self.cam_handle)
         im=self.get_image(self.cam_handle)
-        cv2.imshow("1",im)
-        cv2.waitKey(0)
+        sensorImage = np.array(im, dtype=np.uint8)
+        print(sensorImage)
 
     def get_handle(self, name):
         (check, handle) = vrep.simxGetObjectHandle(self.ID, name, const_v.simx_opmode_blocking)
@@ -103,7 +104,8 @@ class rozum_sim:
         (code, res, im) = vrep.simxGetVisionSensorImage(self.ID, cam_handle, 0, const_v.simx_opmode_buffer)
         print(code)
         img = np.array(im, dtype=np.uint8)
-        img.resize([32, 32, 3])
+        img.resize([res[0], res[1], 3])
+        img=cv2.flip(img,0)
         return img
 
     def move_joint(self, num, value):

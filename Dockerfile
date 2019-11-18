@@ -13,6 +13,7 @@ RUN apt-get install -y \
     wget \
     libglib2.0-0 \
     libgl1-mesa-glx \
+    libgl1-mesa-dri \
     xcb \
     "^libxcb.*" \
     libx11-xcb-dev \
