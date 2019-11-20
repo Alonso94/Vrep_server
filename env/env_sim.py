@@ -15,6 +15,10 @@ class rozum_sim:
         self.action_bound = [-0.2, 0.2]
         self.action_dim = self.DoF
 
+        os.chdir("/Vrep_server")
+        os.system("git pull")
+        os.chdir("/")
+
         self.vrep_root = "/V-REP_PRO_EDU_V3_5_0_Linux/"
         self.scene_file = "/Vrep_server/env/rozum_model.ttt"
 
@@ -69,11 +73,12 @@ class rozum_sim:
         # print(self.init_goal_pose)
         self.open_gripper()
         self.tip_position = self.get_position(self.tip_handle)
-        print(self.tip_position)
-        print(self.cam_handle)
-        im=self.get_image(self.cam_handle)
-        sensorImage = np.array(im, dtype=np.uint8)
-        print(sensorImage)
+        # print(self.tip_position)
+        # print(self.cam_handle)
+        # im=self.get_image(self.cam_handle)
+        # sensorImage = np.array(im, dtype=np.uint8)
+        # cv2.imshow("1",sensorImage)
+        # cv2.waitKey(0)
 
     def get_handle(self, name):
         (check, handle) = vrep.simxGetObjectHandle(self.ID, name, const_v.simx_opmode_blocking)
@@ -102,7 +107,7 @@ class rozum_sim:
 
     def get_image(self, cam_handle):
         (code, res, im) = vrep.simxGetVisionSensorImage(self.ID, cam_handle, 0, const_v.simx_opmode_buffer)
-        print(code)
+        # print(code)
         img = np.array(im, dtype=np.uint8)
         img.resize([res[0], res[1], 3])
         img=cv2.flip(img,0)
@@ -177,6 +182,7 @@ class rozum_sim:
         img = self.get_image(self.cam_handle)
         return img
 
-
-if __name__ == '__main__':
-    env = rozum_sim()
+    def render(self):
+        im=self.get_image(self.cam_handle)
+        cv2.imshow("render",im)
+        cv2.waitKey(25)
