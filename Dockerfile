@@ -63,4 +63,8 @@ EXPOSE 22
 
 WORKDIR /
 
+RUN Xvfb :1 -screen 0 1600x1200x16  &
+RUN export DISPLAY=:1.0
+RUN jupyter notebook --ip 0.0.0.0 --port 8800 --no-browser --allow-root &
+
 ENTRYPOINT ["/bin/bash"]

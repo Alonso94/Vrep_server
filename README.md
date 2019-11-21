@@ -18,5 +18,5 @@ After have this working; you can use env_sim after running docker with the follo
 ```bash
 docker run -it -p 172.17.0.1:19999:19999/tcp \
            -v /home/<your_user_name>/Vrep_server:/opt/project \
-           --name vrep_rozum vrep_rozum:1.0
+           --name vrep_rozum 3liyounes/vrep_rozum:1.0
 ```
