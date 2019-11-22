@@ -23,7 +23,8 @@ class rozum_sim:
         self.scene_file = "/Vrep_server/env/rozum_model.ttt"
 
         os.chdir(self.vrep_root)
-        os.system("xvfb-run --auto-servernum --server-num=1 -s \"-screen 0 640x480x24\" ./vrep.sh -h -s " + self.scene_file + " &")
+        # os.system("xvfb-run --auto-servernum --server-num=1 -s \"-screen 0 640x480x24\" 
+        os.system("xvfb-run ./vrep.sh -h -s " + self.scene_file + " &")
 
         vrep.simxFinish(-1)
         time.sleep(1)

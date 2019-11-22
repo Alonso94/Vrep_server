@@ -12,3 +12,6 @@ for i in range(100):
     action,states=model.predict(obs)
     obs,rewards,dones,info=env.step()
 
+RGB_im = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+from matplotlib import pyplot as plt
+plt.imshow(img)

@@ -37,13 +37,14 @@ RUN pip3 install tensorflow-gpu==1.14.0
 RUN pip3 install \
     enum34~=1.1.6 \
     gpflow==1.5.1 \
-    stable-baselines
+    stable-baselines \
+    jupyter
 
-RUN curl -O -J -L https://sourceforge.net/projects/virtualgl/files/2.6.3/virtualgl_2.6.3_amd64.deb/download &&
-     dpkg -i virtualgl_2.6.3_amd64.deb &&
-     apt install -f &&
-     /opt/VirtualGL/bin/vglserver_config -config +s +f -t &&
-     rm virtualgl_2.6.3_amd64.deb
+RUN curl -O -J -L https://sourceforge.net/projects/virtualgl/files/2.6.3/virtualgl_2.6.3_amd64.deb/download
+RUN dpkg -i virtualgl_2.6.3_amd64.deb
+RUN apt install -f
+RUN /opt/VirtualGL/bin/vglserver_config -config +s +f -t
+RUN rm virtualgl_2.6.3_amd64.deb
 
 # nvidia-docker links
 LABEL com.nvidia.volumes.needed="nvidia_driver"
@@ -60,6 +61,7 @@ RUN echo 'export PATH=/V-REP_PRO_EDU_V3_5_0_Linux/:$PATH' >> ~/.bashrc#
 EXPOSE 22
 
 COPY entrypoint.sh /
-ENTRYPOINT ["entrypoint.sh"]
+RUN ["chmod","+x","/entrypoint.sh"]
+ENTRYPOINT ["sh","/entrypoint.sh"]
 
 CMD ["/bin/bash"]
