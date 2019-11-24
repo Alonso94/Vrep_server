@@ -25,6 +25,7 @@ class rozum_sim:
         os.chdir(self.vrep_root)
         # os.system("xvfb-run --auto-servernum --server-num=1 -s \"-screen 0 640x480x24\" 
         os.system("./vrep.sh -h -s " + self.scene_file + " &")
+        os.chdir('/')
 
         vrep.simxFinish(-1)
         time.sleep(1)
@@ -138,7 +139,7 @@ class rozum_sim:
         reward = -0.1
         done = False
         tmp_tip_position = self.get_position(self.tip_handle)
-        if tmp_tip_position[2] > self.tip_position:
+        if tmp_tip_position[2] > self.tip_position[2]:
             reward -= 1
             return reward, True
         self.tip_position = tmp_tip_position
