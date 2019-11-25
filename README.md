@@ -15,3 +15,5 @@ After the first time:
 ```bash
 sudo docker container start -i vrep_rozum
 ```
+
+nohup python /home/ec2-user/script.py >/home/ec2-user/script.py.log </dev/null 2>&1 &
