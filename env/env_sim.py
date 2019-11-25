@@ -1,5 +1,6 @@
 import vrep.vrep as vrep
 import vrep.vrepConst as const_v
+from gym import spaces
 import time
 import sys
 import numpy as np
@@ -12,8 +13,14 @@ class rozum_sim:
 
     def __init__(self):
         self.DoF = 6
-        self.action_bound = [-0.2, 0.2]
+        self.action_bound = [-5, 5]
+        self.angles_bound = [-180,180]
         self.action_dim = self.DoF
+        
+        self.action_space=spaces.Box(-5,5,[self.action_dim])
+        self.observation_space=spaces.Box(0, 255, [256, 256, 3])
+        self.metadata=''
+        
 
         # os.chdir("/Vrep_server")
         # os.system("git pull")
@@ -79,12 +86,6 @@ class rozum_sim:
         # print(self.init_goal_pose)
         self.open_gripper()
         self.tip_position = self.get_position(self.tip_handle)
-        # print(self.tip_position)
-        # print(self.cam_handle)
-        # im=self.get_image(self.cam_handle)
-        # sensorImage = np.array(im, dtype=np.uint8)
-        # cv2.imshow("1",sensorImage)
-        # cv2.waitKey(0)
 
     def get_handle(self, name):
         (check, handle) = vrep.simxGetObjectHandle(self.ID, name, const_v.simx_opmode_blocking)
@@ -120,7 +121,7 @@ class rozum_sim:
         return img
 
     def move_joint(self, num, value):
-        # in radian
+        # in degrees
         code=vrep.simxSetJointTargetPosition(self.ID, self.joint_handles[num], value*math.pi/180, const_v.simx_opmode_blocking)
         # print(code)
         time.sleep(0.3)
@@ -169,10 +170,12 @@ class rozum_sim:
         return reward, done
 
     def step(self, action):
-        action = np.clip(action, *self.action_bound)
+#         action = np.clip(action, *self.action_bound)
         self.angles = self.get_angles()
         for i in range(self.DoF):
             self.angles[i] += action[i]
+        self.angles=np.clip(self.angles,*self.angles_bound)
+        for i in range(self.DoF):
             self.move_joint(i, self.angles[i])
         img = self.get_image(self.cam_handle)
         reward, done = self.get_reward()
