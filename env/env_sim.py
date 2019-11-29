@@ -6,7 +6,7 @@ import numpy as np
 import cv2
 import math
 import os
-
+from gym import spaces
 
 class rozum_sim:
 
@@ -14,22 +14,29 @@ class rozum_sim:
         self.DoF = 6
         self.action_bound = [-5, 5]
         self.action_dim = self.DoF
+        self.angles_bound = [-180,180]
 
+        self.action_space=spaces.Box(-5,5,[self.action_dim])
+        self.observation_space=spaces.Box(0, 255, [256, 256, 3])
+        self.metadata=''
+        
         # os.chdir("/Vrep_server")
         # os.system("git pull")
         # os.chdir("/")
         #
-        # self.vrep_root = "/V-REP_PRO_EDU_V3_5_0_Linux/"
-        # self.scene_file = "/Vrep_server/env/rozum_model.ttt"
+        self.vrep_root = "/V-REP_PRO_EDU_V3_5_0_Linux/"
+        self.scene_file = "/Vrep_server/env/rozum_model.ttt"
         #
-        # os.chdir(self.vrep_root)
-        # os.system("xvfb-run --auto-servernum --server-num=1 -s \"-screen 0 640x480x24\" ./vrep.sh -h -s " + self.scene_file + " &")
+        os.chdir(self.vrep_root)
+        # os.system("xvfb-run --auto-servernum --server-num=1 -s \"-screen 0 640x480x24\" 
+        os.system("./vrep.sh -h -s " + self.scene_file + " &")
+        os.chdir("/")
 
         vrep.simxFinish(-1)
         time.sleep(1)
 
         # get the ID of the running simulation
-        self.ID = vrep.simxStart('127.0.0.1', 19999, True, False, 5000, 5)
+        self.ID = vrep.simxStart('172.17.0.1', 19999, True, False, 5000, 5)
         # check the connection
         if self.ID != -1:
             print("Connected")
@@ -39,6 +46,9 @@ class rozum_sim:
         # for camera
         self.cam_handle = self.get_handle('Vision_sensor')
         (code, res, im) = vrep.simxGetVisionSensorImage(self.ID, self.cam_handle, 0, const_v.simx_opmode_streaming)
+
+        self.render_handle = self.get_handle('render')
+        (code, res, im) = vrep.simxGetVisionSensorImage(self.ID, self.render_handle, 0, const_v.simx_opmode_streaming)
 
         # joints
         self.joint_handles = []
@@ -174,6 +184,8 @@ class rozum_sim:
         self.angles = self.get_angles()
         for i in range(self.DoF):
             self.angles[i] += action[i]
+        self.angles=np.clip(self.angles,*self.angles_bound)
+        for i in range(self.DoF):
             self.move_joint(i, self.angles[i])
         img = self.get_image(self.cam_handle)
         reward, done = self.get_reward(img)
@@ -191,9 +203,9 @@ class rozum_sim:
 
     def image_processeing(self,img,lower,upper,num_iter):
         hsv = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
-        h=hsv.copy()
-        h[:,:,1]=0
-        h[:,:,2]=0
+#         h=hsv.copy()
+#         h[:,:,1]=0
+#         h[:,:,2]=0
         binary = cv2.inRange(hsv, lower, upper)
         binary = cv2.erode(binary, self.er_kernel, iterations=num_iter[0])
         binary = cv2.dilate(binary, self.di_kernel, iterations=num_iter[1])
@@ -245,12 +257,11 @@ class rozum_sim:
         return reward, done
 
     def render(self):
-        im=self.get_image(self.cam_handle)
-        cv2.imshow("render",im)
-        cv2.waitKey(10)
+        im=self.get_image(self.render_handle)
+        return im
 
-env=rozum_sim()
-while True:
-    a=env.sample_action()
-    _,r,_,_=env.step(a)
-    print(r)
+# env=rozum_sim()
+# while True:
+#     a=env.sample_action()
+#     _,r,_,_=env.step(a)
+#     print(r)
