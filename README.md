@@ -15,6 +15,13 @@ After the first time:
 ```bash
 sudo docker container start -i vrep_rozum
 ```
+If you faced a problem, run
+```bash
+rm /tmp/.X1-lock
+```
+inside the docker container and restart the container
+
+
 To kill jupyter after finishing the training
 ```bash
 lsof -ti:8086 | xargs kill

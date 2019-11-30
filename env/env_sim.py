@@ -17,7 +17,8 @@ class rozum_sim:
         self.angles_bound = [-180,180]
 
         self.action_space=spaces.Box(-5,5,[self.action_dim])
-        self.observation_space=spaces.Box(0, 255, [256, 256, 3])
+#         self.observation_space=spaces.Box(0, 255, [256, 256, 3])
+        self.observation_space=spaces.Box(0,100,[3])
         self.metadata=''
         
         # os.chdir("/Vrep_server")
@@ -74,17 +75,7 @@ class rozum_sim:
         self.gripper_motor = self.get_handle('RG2_openCloseJoint')
         # task part
         self.task_part = 0
-
-        self.init_angles = self.get_angles()
-
-        self.init_pose_cube = self.get_position(self.cube_handle)
-        # print(self.init_pose_cube)
-        self.init_goal_pose = self.get_position(self.goal_handle)
-        # print(self.init_goal_pose)
-        self.open_gripper()
-        self.reset()
-        self.tip_position = self.get_position(self.tip_handle)
-
+        
         self.goal_l = (80, 0, 0)
         self.goal_u = (120, 255, 255)
         self.cube_l = (55, 50, 50)
@@ -96,6 +87,17 @@ class rozum_sim:
         self.part_2_center = np.array([320.0, 290.0])
         self.part_1_area = 0.25
         self.part_2_area = 0.75
+
+        self.init_angles = self.get_angles()
+
+        self.init_pose_cube = self.get_position(self.cube_handle)
+        # print(self.init_pose_cube)
+        self.init_goal_pose = self.get_position(self.goal_handle)
+        # print(self.init_goal_pose)
+        self.open_gripper()
+        self.reset()
+        self.tip_position = self.get_position(self.tip_handle)
+
 
     def get_handle(self, name):
         (check, handle) = vrep.simxGetObjectHandle(self.ID, name, const_v.simx_opmode_blocking)
@@ -188,18 +190,20 @@ class rozum_sim:
         for i in range(self.DoF):
             self.move_joint(i, self.angles[i])
         img = self.get_image(self.cam_handle)
-        reward, done = self.get_reward(img)
-        return img, reward, done, {}
+        obs,reward, done = self.get_reward(img)
+        return obs, reward, done, {}
 
     def reset(self):
         self.task_part = 0
         self.angles = self.init_angles
         for i in range(self.DoF):
             self.move_joint(i, self.angles[i])
+        self.open_gripper()
         vrep.simxSetObjectPosition(self.ID, self.cube_handle, -1, self.init_pose_cube, const_v.simx_opmode_oneshot_wait)
         vrep.simxSetObjectPosition(self.ID, self.goal_handle, -1, self.init_goal_pose, const_v.simx_opmode_oneshot_wait)
         img = self.get_image(self.cam_handle)
-        return img
+        obs=self.image_processeing(img, self.goal_l, self.goal_u, [1, 1])
+        return obs
 
     def image_processeing(self,img,lower,upper,num_iter):
         hsv = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
@@ -231,30 +235,43 @@ class rozum_sim:
         return center,area_percentage,rotation
 
     def get_reward(self, img):
-        reward = -0.1
+        reward = -0.01
         done = False
         if self.task_part == 0:
             center, area, rotation = self.image_processeing(img, self.goal_l, self.goal_u, [1, 1])
+            obs=(center, area, rotation)
             distance = np.linalg.norm(center - self.part_1_center)
             area_difference = abs(area - self.part_1_area)
             # print(distance, area_difference, rotation)
             if distance < 3 and area_difference < 2 and rotation < 1:
                 self.task_part = 1
                 reward += 2
-                self.close_gripper()
-                return reward, done
+                self.det_goal=self.get_angles()
+                return obs,reward, done
         else:
             center, area, rotation = self.image_processeing(img, self.cube_l, self.cube_u, [1, 1])
+            obs=(center, area, rotation)
             distance = np.linalg.norm(center - self.part_2_center)
             area_difference = abs(area - self.part_2_area)
             # print(distance,area_difference,rotation)
             if distance < 5 and area_difference < 5 and rotation < 1:
                 reward += 2
                 done = True
+                self.close_gripper()
+                return obs,reward, done
+                self.angles = self.init_angles
+                for i in range(self.DoF):
+                    self.move_joint(i, self.angles[i])
+                self.angles = self.init_angles
+                for i in range(self.DoF):
+                    self.move_joint(i, self.angles[i])
                 self.open_gripper()
-                return reward, done
+        if obs[1]==0:
+            reward-=2
+            done=True
+            return obs,reward, done
         reward -= (0.01 * distance + 0.05 * area_difference + 0.1 * rotation)
-        return reward, done
+        return obs,reward, done
 
     def render(self):
         im=self.get_image(self.render_handle)

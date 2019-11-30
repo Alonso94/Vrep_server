@@ -1,0 +1,1604 @@
+loaded library "libv_rep.so"
+QFactoryLoader::QFactoryLoader() checking directory path "/V-REP_PRO_EDU_V3_5_0_Linux/platforms" ...
+QFactoryLoader::QFactoryLoader() looking at "/V-REP_PRO_EDU_V3_5_0_Linux/platforms/libqeglfs.so"
+Found metadata in lib /V-REP_PRO_EDU_V3_5_0_Linux/platforms/libqeglfs.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "eglfs"
+        ]
+    },
+    "className": "QEglFSIntegrationPlugin",
+    "debug": false,
+    "version": 329984
+}
+
+
+Got keys from plugin meta data ("eglfs")
+QFactoryLoader::QFactoryLoader() looking at "/V-REP_PRO_EDU_V3_5_0_Linux/platforms/libqlinuxfb.so"
+Found metadata in lib /V-REP_PRO_EDU_V3_5_0_Linux/platforms/libqlinuxfb.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "linuxfb"
+        ]
+    },
+    "className": "QLinuxFbIntegrationPlugin",
+    "debug": false,
+    "version": 329984
+}
+
+
+Got keys from plugin meta data ("linuxfb")
+QFactoryLoader::QFactoryLoader() looking at "/V-REP_PRO_EDU_V3_5_0_Linux/platforms/libqminimal.so"
+Found metadata in lib /V-REP_PRO_EDU_V3_5_0_Linux/platforms/libqminimal.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "minimal"
+        ]
+    },
+    "className": "QMinimalIntegrationPlugin",
+    "debug": false,
+    "version": 329984
+}
+
+
+Got keys from plugin meta data ("minimal")
+QFactoryLoader::QFactoryLoader() looking at "/V-REP_PRO_EDU_V3_5_0_Linux/platforms/libqminimalegl.so"
+Found metadata in lib /V-REP_PRO_EDU_V3_5_0_Linux/platforms/libqminimalegl.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "minimalegl"
+        ]
+    },
+    "className": "QMinimalEglIntegrationPlugin",
+    "debug": false,
+    "version": 329984
+}
+
+
+Got keys from plugin meta data ("minimalegl")
+QFactoryLoader::QFactoryLoader() looking at "/V-REP_PRO_EDU_V3_5_0_Linux/platforms/libqoffscreen.so"
+Found metadata in lib /V-REP_PRO_EDU_V3_5_0_Linux/platforms/libqoffscreen.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "offscreen"
+        ]
+    },
+    "className": "QOffscreenIntegrationPlugin",
+    "debug": false,
+    "version": 329984
+}
+
+
+Got keys from plugin meta data ("offscreen")
+QFactoryLoader::QFactoryLoader() looking at "/V-REP_PRO_EDU_V3_5_0_Linux/platforms/libqvnc.so"
+Found metadata in lib /V-REP_PRO_EDU_V3_5_0_Linux/platforms/libqvnc.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "vnc"
+        ]
+    },
+    "className": "QVncIntegrationPlugin",
+    "debug": false,
+    "version": 329984
+}
+
+
+Got keys from plugin meta data ("vnc")
+QFactoryLoader::QFactoryLoader() looking at "/V-REP_PRO_EDU_V3_5_0_Linux/platforms/libqxcb.so"
+Found metadata in lib /V-REP_PRO_EDU_V3_5_0_Linux/platforms/libqxcb.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "xcb"
+        ]
+    },
+    "className": "QXcbIntegrationPlugin",
+    "debug": false,
+    "version": 329984
+}
+
+
+Got keys from plugin meta data ("xcb")
+QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-root'
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/platforms/libqxcb.so"
+Cannot load library Xcursor: (Xcursor: cannot open shared object file: No such file or directory)
+Cannot load library Xcursor: (Xcursor: cannot open shared object file: No such file or directory)
+QFactoryLoader::QFactoryLoader() checking directory path "/V-REP_PRO_EDU_V3_5_0_Linux/xcbglintegrations" ...
+QFactoryLoader::QFactoryLoader() looking at "/V-REP_PRO_EDU_V3_5_0_Linux/xcbglintegrations/libqxcb-egl-integration.so"
+Found metadata in lib /V-REP_PRO_EDU_V3_5_0_Linux/xcbglintegrations/libqxcb-egl-integration.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.Xcb.QXcbGlIntegrationFactoryInterface.5.5",
+    "MetaData": {
+        "Keys": [
+            "xcb_egl"
+        ]
+    },
+    "className": "QXcbEglIntegrationPlugin",
+    "debug": false,
+    "version": 329984
+}
+
+
+Got keys from plugin meta data ("xcb_egl")
+QFactoryLoader::QFactoryLoader() looking at "/V-REP_PRO_EDU_V3_5_0_Linux/xcbglintegrations/libqxcb-glx-integration.so"
+Found metadata in lib /V-REP_PRO_EDU_V3_5_0_Linux/xcbglintegrations/libqxcb-glx-integration.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.Xcb.QXcbGlIntegrationFactoryInterface.5.5",
+    "MetaData": {
+        "Keys": [
+            "xcb_glx"
+        ]
+    },
+    "className": "QXcbGlxIntegrationPlugin",
+    "debug": false,
+    "version": 329984
+}
+
+
+Got keys from plugin meta data ("xcb_glx")
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/xcbglintegrations/libqxcb-glx-integration.so"
+QFactoryLoader::QFactoryLoader() checking directory path "/V-REP_PRO_EDU_V3_5_0_Linux/platformthemes" ...
+QFactoryLoader::QFactoryLoader() looking at "/V-REP_PRO_EDU_V3_5_0_Linux/platformthemes/libqgtk3.so"
+Found metadata in lib /V-REP_PRO_EDU_V3_5_0_Linux/platformthemes/libqgtk3.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformThemeFactoryInterface.5.1",
+    "MetaData": {
+        "Keys": [
+            "gtk3"
+        ]
+    },
+    "className": "QGtk3ThemePlugin",
+    "debug": false,
+    "version": 329984
+}
+
+
+Got keys from plugin meta data ("gtk3")
+QFactoryLoader::QFactoryLoader() checking directory path "/V-REP_PRO_EDU_V3_5_0_Linux/platforminputcontexts" ...
+QFactoryLoader::QFactoryLoader() checking directory path "/V-REP_PRO_EDU_V3_5_0_Linux/styles" ...
+QFactoryLoader::QFactoryLoader() checking directory path "/V-REP_PRO_EDU_V3_5_0_Linux/iconengines" ...
+QFactoryLoader::QFactoryLoader() checking directory path "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats" ...
+QFactoryLoader::QFactoryLoader() looking at "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqgif.so"
+Found metadata in lib /V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqgif.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QImageIOHandlerFactoryInterface",
+    "MetaData": {
+        "Keys": [
+            "gif"
+        ],
+        "MimeTypes": [
+            "image/gif"
+        ]
+    },
+    "className": "QGifPlugin",
+    "debug": false,
+    "version": 329984
+}
+
+
+Got keys from plugin meta data ("gif")
+QFactoryLoader::QFactoryLoader() looking at "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqicns.so"
+Found metadata in lib /V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqicns.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QImageIOHandlerFactoryInterface",
+    "MetaData": {
+        "Keys": [
+            "icns"
+        ],
+        "MimeTypes": [
+            "image/x-icns"
+        ]
+    },
+    "className": "QICNSPlugin",
+    "debug": false,
+    "version": 329984
+}
+
+
+Got keys from plugin meta data ("icns")
+QFactoryLoader::QFactoryLoader() looking at "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqico.so"
+Found metadata in lib /V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqico.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QImageIOHandlerFactoryInterface",
+    "MetaData": {
+        "Keys": [
+            "ico",
+            "cur"
+        ],
+        "MimeTypes": [
+            "image/vnd.microsoft.icon"
+        ]
+    },
+    "className": "QICOPlugin",
+    "debug": false,
+    "version": 329984
+}
+
+
+Got keys from plugin meta data ("ico", "cur")
+QFactoryLoader::QFactoryLoader() looking at "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqjp2.so"
+Found metadata in lib /V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqjp2.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QImageIOHandlerFactoryInterface",
+    "MetaData": {
+        "Keys": [
+            "jp2"
+        ],
+        "MimeTypes": [
+            "image/jp2",
+            "image/jpx",
+            "image/jpm",
+            "video/mj2"
+        ]
+    },
+    "className": "QJp2Plugin",
+    "debug": false,
+    "version": 329984
+}
+
+
+Got keys from plugin meta data ("jp2")
+QFactoryLoader::QFactoryLoader() looking at "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqjpeg.so"
+Found metadata in lib /V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqjpeg.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QImageIOHandlerFactoryInterface",
+    "MetaData": {
+        "Keys": [
+            "jpg",
+            "jpeg"
+        ],
+        "MimeTypes": [
+            "image/jpeg",
+            "image/jpeg"
+        ]
+    },
+    "className": "QJpegPlugin",
+    "debug": false,
+    "version": 329984
+}
+
+
+Got keys from plugin meta data ("jpg", "jpeg")
+QFactoryLoader::QFactoryLoader() looking at "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqsvg.so"
+Found metadata in lib /V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqsvg.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QImageIOHandlerFactoryInterface",
+    "MetaData": {
+        "Keys": [
+            "svg",
+            "svgz"
+        ],
+        "MimeTypes": [
+            "image/svg+xml",
+            "image/svg+xml-compressed"
+        ]
+    },
+    "className": "QSvgPlugin",
+    "debug": false,
+    "version": 329984
+}
+
+
+Got keys from plugin meta data ("svg", "svgz")
+QFactoryLoader::QFactoryLoader() looking at "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqtga.so"
+Found metadata in lib /V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqtga.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QImageIOHandlerFactoryInterface",
+    "MetaData": {
+        "Keys": [
+            "tga"
+        ],
+        "MimeTypes": [
+            "image/x-tga"
+        ]
+    },
+    "className": "QTgaPlugin",
+    "debug": false,
+    "version": 329984
+}
+
+
+Got keys from plugin meta data ("tga")
+QFactoryLoader::QFactoryLoader() looking at "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqtiff.so"
+Found metadata in lib /V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqtiff.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QImageIOHandlerFactoryInterface",
+    "MetaData": {
+        "Keys": [
+            "tiff",
+            "tif"
+        ],
+        "MimeTypes": [
+            "image/tiff",
+            "image/tiff"
+        ]
+    },
+    "className": "QTiffPlugin",
+    "debug": false,
+    "version": 329984
+}
+
+
+Got keys from plugin meta data ("tiff", "tif")
+QFactoryLoader::QFactoryLoader() looking at "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqwbmp.so"
+Found metadata in lib /V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqwbmp.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QImageIOHandlerFactoryInterface",
+    "MetaData": {
+        "Keys": [
+            "wbmp"
+        ],
+        "MimeTypes": [
+            "image/vnd.wap.wbmp"
+        ]
+    },
+    "className": "QWbmpPlugin",
+    "debug": false,
+    "version": 329984
+}
+
+
+Got keys from plugin meta data ("wbmp")
+QFactoryLoader::QFactoryLoader() looking at "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqwebp.so"
+Found metadata in lib /V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqwebp.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QImageIOHandlerFactoryInterface",
+    "MetaData": {
+        "Keys": [
+            "webp"
+        ],
+        "MimeTypes": [
+            "image/webp"
+        ]
+    },
+    "className": "QWebpPlugin",
+    "debug": false,
+    "version": 329984
+}
+
+
+Got keys from plugin meta data ("webp")
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqgif.so"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqicns.so"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqico.so"
+Cannot load library /V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqjp2.so: (libjasper.so.1: cannot open shared object file: No such file or directory)
+QLibraryPrivate::loadPlugin failed on "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqjp2.so" : "Cannot load library /V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqjp2.so: (libjasper.so.1: cannot open shared object file: No such file or directory)"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqjpeg.so"
+Cannot load library /V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqsvg.so: (libQt5Svg.so.5: cannot open shared object file: No such file or directory)
+QLibraryPrivate::loadPlugin failed on "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqsvg.so" : "Cannot load library /V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqsvg.so: (libQt5Svg.so.5: cannot open shared object file: No such file or directory)"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqtga.so"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqtiff.so"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqwbmp.so"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqwebp.so"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtMeshCalc.so"
+Cannot load library /V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtBlueZero.so: (libicui18n.so.55: cannot open shared object file: No such file or directory)
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtBubbleRob.so"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtBwf.so"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtCollada.so"
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtCollada.so" 
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtConvexDecompose.so"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtCustomUI.so"
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtCustomUI.so" 
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtDynamicsBullet-2-78.so"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtDynamicsBullet-2-83.so"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtDynamicsNewton.so"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtDynamicsOde.so"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtDynamicsVortex.so"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtExternalRenderer.so"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtICP.so"
+Using the default Lua library.
+Add-on script 'vrepAddOnScript-addOnScriptDemo.lua' was loaded.
+Simulator launched.
+Plugin 'MeshCalc': loading...
+Plugin 'MeshCalc': load succeeded.
+Plugin 'BlueZero': loading...
+Error with plugin 'BlueZero': load failed (could not load). The plugin probably couldn't load dependency libraries. For additional infos, modify the script 'libLoadErrorCheck.sh', run it and inspect the output.
+Plugin 'BubbleRob': loading...
+Plugin 'BubbleRob': load succeeded.
+Plugin 'Bwf': loading...
+Plugin 'Bwf': load succeeded.
+Plugin 'Collada': loading...
+V-REP runs in headless mode. Cannot start 'Collada' plugin.
+Error with plugin 'Collada': load failed (failed initialization).
+Plugin 'ConvexDecompose': loading...
+Plugin 'ConvexDecompose': load succeeded.
+Plugin 'CustomUI': loading...
+Initialization failed, running in headless mode. Cannot start 'CustomUI' plugin.
+Error with plugin 'CustomUI': load failed (failed initialization).
+Plugin 'DynamicsBullet-2-78': loading...
+Plugin 'DynamicsBullet-2-78': load succeeded.
+Plugin 'DynamicsBullet-2-83': loading...
+Plugin 'DynamicsBullet-2-83': load succeeded.
+Plugin 'DynamicsNewton': loading...
+Plugin 'DynamicsNewton': load succeeded.
+Plugin 'DynamicsOde': loading...
+Plugin 'DynamicsOde': load succeeded.
+Plugin 'DynamicsVortex': loading...
+Plugin 'DynamicsVortex': load succeeded.
+Plugin 'ExternalRenderer': loading...
+Plugin 'ExternalRenderer': load succeeded.
+Plugin 'ICP': loading...
+Plugin 'ICP': warning: replaced variable 'simICP'
+Cannot load library /V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtImage.so: (libopencv_videoio3.so.3.2: cannot open shared object file: No such file or directory)
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtK3.so"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtLuaCommander.so"
+Plugin 'ICP': load succeeded.
+Plugin 'Image': loading...
+Error with plugin 'Image': load failed (could not load). The plugin probably couldn't load dependency libraries. For additional infos, modify the script 'libLoadErrorCheck.sh', run it and inspect the output.
+Plugin 'K3': loading...
+Plugin 'K3': load succeeded.
+Plugin 'LuaCommander': loading...
+LuaCommander: cannot find the statusbar widget
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtLuaCommander.so" 
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtLuaRemoteApiClient.so"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtMtb.so"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtOMPL.so"
+Error with plugin 'LuaCommander': load failed (failed initialization).
+Plugin 'LuaRemoteApiClient': loading...
+Plugin 'LuaRemoteApiClient': load succeeded.
+Plugin 'Mtb': loading...
+Plugin 'Mtb': load succeeded.
+Plugin 'OMPL': loading...
+Plugin 'OMPL': warning: replaced variable 'simOMPL'
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtOpenMesh.so"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtPovRay.so"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtQhull.so"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtRRS1.so"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtReflexxesTypeII.so"
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtRemoteApi.so"
+Plugin 'OMPL': load succeeded.
+Plugin 'OpenMesh': loading...
+Plugin 'OpenMesh': load succeeded.
+Plugin 'PovRay': loading...
+Plugin 'PovRay': load succeeded.
+Plugin 'Qhull': loading...
+Plugin 'Qhull': load succeeded.
+Plugin 'RRS1': loading...
+Plugin 'RRS1': load succeeded.
+Plugin 'ReflexxesTypeII': loading...
+Plugin 'ReflexxesTypeII': load succeeded.
+Plugin 'RemoteApi': loading...
+Starting a remote API server on port 19997
+Cannot load library /V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtRosInterface.so: (librosconsole.so: cannot open shared object file: No such file or directory)
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtSDF.so"
+Plugin 'RemoteApi': load succeeded.
+Plugin 'RosInterface': loading...
+Error with plugin 'RosInterface': load failed (could not load). The plugin probably couldn't load dependency libraries. For additional infos, modify the script 'libLoadErrorCheck.sh', run it and inspect the output.
+Plugin 'SDF': loading...
+Plugin 'SDF': warning: replaced variable 'simSDF'
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtSurfaceReconstruction.so"
+Plugin 'SDF': load succeeded.
+Plugin 'SurfaceReconstruction': loading...
+Plugin 'SurfaceReconstruction': warning: replaced variable 'simSurfRec'
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtUrdf.so"
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtUrdf.so" 
+loaded library "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtVision.so"
+QFactoryLoader::QFactoryLoader() checking directory path "/V-REP_PRO_EDU_V3_5_0_Linux/accessiblebridge" ...
+loaded library "GL"
+Connected
+
+ Before training 
+
+-2.468224178611139
+-2.9898281548079226
+-2.9637021999995916
+-3.3003331472531388
+-3.177767686164174
+-3.226603929578211
+-4.310050290768056
+-4.599843334976552
+-3.2616589089850914
+-3.378144053700197
+-3.4020602359444614
+-3.4877863213513356
+-3.4358495922567056
+-3.861297647552191
+-6.341130288217867
+-6.2674507091631115
+-5.680161379949473
+-6.040846972592169
+-5.948032075160901
+-5.809048330133624
+-5.98288612314216
+-3.4472495877011697
+-6.359016566807729
+-3.230619323113987
+-6.043458467693522
+-5.889493075355777
+-6.601521825804891
+-6.952648528027588
+-2.9661086459546673
+-2.747613544912709
+-6.08726950091827
+-6.104527178441918
+-5.542658658381777
+-4.745469592494604
+-4.983140831002212
+-4.766777205713285
+-5.172587805374485
+-5.163159769478128
+-5.127946098805916
+-4.5071605504906085
+-4.794637716313911
+-4.253248956723779
+-2.3481999959252673
+-4.1212910861246925
+-2.6034329881980613
+-2.8620836127674885
+-2.5279885798517636
+-5.240243330122716
+-5.199897063900414
+-5.682161613549601
+-5.5179363323779915
+-5.289789658933573
+-5.236374894348041
+-2.762415494523058
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-1.5961002046295107
+-5.7311176561262505
+-1.806998864218756
+-6.32700856750718
+-1.9819704684303536
+-1.8488842900558864
+-1.677816102047389
+-5.958730328449054
+-6.4584587454792075
+-6.220459460928412
+-6.35718066851594
+-6.854327330907964
+-6.5681097314220285
+-5.903228890198848
+-5.914835893573817
+-5.685542642387537
+-1.702614618757396
+-6.377783818362978
+-6.400037391155033
+-1.923129951827769
+-1.8441174577280448
+-1.7685981627001575
+-1.4970435142322553
+-5.319458821159243
+-1.170054801322151
+-4.51944340635948
+-1.2987709632881463
+-4.51944340635948
+-4.51944340635948
+-1.4645237102653854
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-1.6919898932056003
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-1.4088641570103468
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-1.3876396470506898
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948Plugin 'SurfaceReconstruction': load succeeded.
+Plugin 'Urdf': loading...
+V-REP runs in headless mode. Cannot start 'Urdf' plugin.
+Error with plugin 'Urdf': load failed (failed initialization).
+Plugin 'Vision': loading...
+Plugin 'Vision': load succeeded.
+Using the 'MeshCalc' plugin.
+Initializing the Bullet physics engine in plugin 'DynamicsBullet_2_78'...
+Engine version: 2.78
+Plugin version: 10
+Initialization successful.
+External exit request: 2
+/usr/local/lib/python3.6/dist-packages/tensorflow/python/framework/dtypes.py:516: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/usr/local/lib/python3.6/dist-packages/tensorflow/python/framework/dtypes.py:517: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/usr/local/lib/python3.6/dist-packages/tensorflow/python/framework/dtypes.py:518: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/usr/local/lib/python3.6/dist-packages/tensorflow/python/framework/dtypes.py:519: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
+/usr/local/lib/python3.6/dist-packages/tensorflow/python/framework/dtypes.py:520: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
+/usr/local/lib/python3.6/dist-packages/tensorflow/python/framework/dtypes.py:525: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  np_resource = np.dtype([("resource", np.ubyte, 1)])
+/usr/local/lib/python3.6/dist-packages/tensorboard/compat/tensorflow_stub/dtypes.py:541: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/usr/local/lib/python3.6/dist-packages/tensorboard/compat/tensorflow_stub/dtypes.py:542: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/usr/local/lib/python3.6/dist-packages/tensorboard/compat/tensorflow_stub/dtypes.py:543: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/usr/local/lib/python3.6/dist-packages/tensorboard/compat/tensorflow_stub/dtypes.py:544: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
+/usr/local/lib/python3.6/dist-packages/tensorboard/compat/tensorflow_stub/dtypes.py:545: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
+/usr/local/lib/python3.6/dist-packages/tensorboard/compat/tensorflow_stub/dtypes.py:550: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  np_resource = np.dtype([("resource", np.ubyte, 1)])
+
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+-4.51944340635948
+Traceback (most recent call last):
+  File "sac_test.py", line 26, in <module>
+    obs, reward, dones, info = env.step(action)
+  File "/Vrep_server/env/env_sim.py", line 189, in step
+    self.move_joint(i, self.angles[i])
+  File "/Vrep_server/env/env_sim.py", line 135, in move_joint
+    code=vrep.simxSetJointTargetPosition(self.ID, self.joint_handles[num], value*math.pi/180, const_v.simx_opmode_blocking)
+  File "/Vrep_server/vrep/vrep.py", line 184, in simxSetJointTargetPosition
+    return c_SetJointTargetPosition(clientID, jointHandle, targetPosition, operationMode)
+KeyboardInterrupt
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtMeshCalc.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtBubbleRob.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtBwf.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtConvexDecompose.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtDynamicsBullet-2-78.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtDynamicsBullet-2-83.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtDynamicsNewton.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtDynamicsOde.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtDynamicsVortex.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtExternalRenderer.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtICP.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtK3.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtLuaRemoteApiClient.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtMtb.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtOMPL.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtOpenMesh.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtPovRay.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtQhull.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtRRS1.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtReflexxesTypeII.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtRemoteApi.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtSDF.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtSurfaceReconstruction.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/libv_repExtVision.so" 
+The X11 connection broke: I/O error (code 1)
+XIO:  fatal IO error 2 (No such file or directory) on X server ":1.0"
+      after 461 requests (461 known processed) with 0 events remaining.
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqgif.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqicns.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqico.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqjpeg.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqtga.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqtiff.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqwbmp.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/imageformats/libqwebp.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/xcbglintegrations/libqxcb-glx-integration.so" 
+QLibraryPrivate::unload succeeded on "/V-REP_PRO_EDU_V3_5_0_Linux/platforms/libqxcb.so" 
+Simulator ended.
+....done.
+QLibraryPrivate::unload succeeded on "GL" (faked)
+On QtCore unload, "libv_rep.so" was leaked, with 2 users
