@@ -16,9 +16,9 @@ class rozum_sim:
         self.action_dim = self.DoF
         self.angles_bound = [-180,180]
 
-        self.action_space=spaces.Box(-5,5,[self.action_dim])
+        self.action_space=spaces.Box(low=-5,high=5,shape=[self.action_dim])
 #         self.observation_space=spaces.Box(0, 255, [256, 256, 3])
-        self.observation_space=spaces.Box(0,100,[3])
+        self.observation_space=spaces.Box(low=0,high=100,shape=[self.action_dim+4],dtype=np.float64)
         self.metadata=''
         
         # os.chdir("/Vrep_server")
@@ -191,7 +191,9 @@ class rozum_sim:
             self.move_joint(i, self.angles[i])
         img = self.get_image(self.cam_handle)
         obs,reward, done = self.get_reward(img)
-        return obs, reward, done, {}
+        angles=self.get_angles()
+        s=np.concatenate((angles,obs),axis=None)
+        return s, reward, done, {}
 
     def reset(self):
         self.task_part = 0
@@ -202,8 +204,12 @@ class rozum_sim:
         vrep.simxSetObjectPosition(self.ID, self.cube_handle, -1, self.init_pose_cube, const_v.simx_opmode_oneshot_wait)
         vrep.simxSetObjectPosition(self.ID, self.goal_handle, -1, self.init_goal_pose, const_v.simx_opmode_oneshot_wait)
         img = self.get_image(self.cam_handle)
-        obs=self.image_processeing(img, self.goal_l, self.goal_u, [1, 1])
-        return obs
+        center, area, rotation=self.image_processeing(img, self.goal_l, self.goal_u, [1, 1])
+        obs=np.array([center[0],center[1], area, rotation])
+        angles=self.get_angles()
+        s=np.concatenate((angles,obs),axis=None)
+#         print(s)
+        return s
 
     def image_processeing(self,img,lower,upper,num_iter):
         hsv = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
@@ -217,7 +223,7 @@ class rozum_sim:
         # cv2.waitKey(1)
         cnt, _ = cv2.findContours(binary, 1, 1)
         cnt = sorted(cnt, key=cv2.contourArea, reverse=True)
-        center=0
+        center=np.array([0.0,0.0])
         area_percentage=0
         rotation=0
         if len(cnt) > 0:
@@ -239,7 +245,7 @@ class rozum_sim:
         done = False
         if self.task_part == 0:
             center, area, rotation = self.image_processeing(img, self.goal_l, self.goal_u, [1, 1])
-            obs=(center, area, rotation)
+            obs=np.array([center[0],center[1], area, rotation])
             distance = np.linalg.norm(center - self.part_1_center)
             area_difference = abs(area - self.part_1_area)
             # print(distance, area_difference, rotation)
@@ -250,7 +256,7 @@ class rozum_sim:
                 return obs,reward, done
         else:
             center, area, rotation = self.image_processeing(img, self.cube_l, self.cube_u, [1, 1])
-            obs=(center, area, rotation)
+            obs=np.array([center[0],center[1], area, rotation])
             distance = np.linalg.norm(center - self.part_2_center)
             area_difference = abs(area - self.part_2_area)
             # print(distance,area_difference,rotation)
