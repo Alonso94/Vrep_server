@@ -15,6 +15,15 @@ After the first time:
 ```bash
 sudo docker container start -i vrep_rozum
 ```
+And to access a running container
+```bash
+sudo  docker exec -it vrep_rozum /bin/bash
+```
+Running tensorboard
+```bash
+tensorboard --port 6007 --logdir  sac_rozum/test_6
+```
+
 If you faced a problem, run
 ```bash
 rm /tmp/.X1-lock

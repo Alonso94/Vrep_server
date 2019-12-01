@@ -241,7 +241,7 @@ class rozum_sim:
         return center,area_percentage,rotation
 
     def get_reward(self, img):
-        reward = -0.01
+        reward = -0.1
         done = False
         if self.task_part == 0:
             center, area, rotation = self.image_processeing(img, self.goal_l, self.goal_u, [1, 1])
@@ -251,7 +251,7 @@ class rozum_sim:
             # print(distance, area_difference, rotation)
             if distance < 3 and area_difference < 2 and rotation < 1:
                 self.task_part = 1
-                reward += 2
+                reward += 5
                 self.det_goal=self.get_angles()
                 return obs,reward, done
         else:
@@ -261,7 +261,7 @@ class rozum_sim:
             area_difference = abs(area - self.part_2_area)
             # print(distance,area_difference,rotation)
             if distance < 5 and area_difference < 5 and rotation < 1:
-                reward += 2
+                reward += 5
                 done = True
                 self.close_gripper()
                 return obs,reward, done
@@ -272,11 +272,10 @@ class rozum_sim:
                 for i in range(self.DoF):
                     self.move_joint(i, self.angles[i])
                 self.open_gripper()
-        if obs[1]==0:
-            reward-=2
-            done=True
+        if obs[2]<0.01:
+            reward-=5
             return obs,reward, done
-        reward -= (0.01 * distance + 0.05 * area_difference + 0.1 * rotation)
+        reward -= (0.0025 * distance + 0.015 * area_difference + 0.015 * rotation)
         return obs,reward, done
 
     def render(self):
