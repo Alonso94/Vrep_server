@@ -97,6 +97,7 @@ class rozum_sim:
         self.open_gripper()
         self.reset()
         self.tip_position = self.get_position(self.tip_handle)
+        self.count=0
 
 
     def get_handle(self, name):
@@ -241,41 +242,45 @@ class rozum_sim:
         return center,area_percentage,rotation
 
     def get_reward(self, img):
-        reward = -0.1
+        reward = -0.01
         done = False
         if self.task_part == 0:
             center, area, rotation = self.image_processeing(img, self.goal_l, self.goal_u, [1, 1])
             obs=np.array([center[0],center[1], area, rotation])
-            distance = np.linalg.norm(center - self.part_1_center)
+            distance = np.linalg.norm(center - self.part_1_center, axis=-1)
             area_difference = abs(area - self.part_1_area)
             # print(distance, area_difference, rotation)
             if distance < 3 and area_difference < 2 and rotation < 1:
                 self.task_part = 1
-                reward += 5
+                reward += 2
                 self.det_goal=self.get_angles()
                 return obs,reward, done
         else:
             center, area, rotation = self.image_processeing(img, self.cube_l, self.cube_u, [1, 1])
             obs=np.array([center[0],center[1], area, rotation])
-            distance = np.linalg.norm(center - self.part_2_center)
+            distance = np.linalg.norm(center - self.part_2_center, axis=-1)
             area_difference = abs(area - self.part_2_area)
             # print(distance,area_difference,rotation)
             if distance < 5 and area_difference < 5 and rotation < 1:
-                reward += 5
+                reward += 2
                 done = True
                 self.close_gripper()
                 return obs,reward, done
-                self.angles = self.init_angles
+                self.angles = self.init_angles.copy()
                 for i in range(self.DoF):
                     self.move_joint(i, self.angles[i])
-                self.angles = self.init_angles
+                self.angles = self.det_goal.copy()
                 for i in range(self.DoF):
                     self.move_joint(i, self.angles[i])
                 self.open_gripper()
         if obs[2]<0.01:
-            reward-=5
+            reward-=1
+            self.count+=1
+            if self.count>20:
+                self.count=0
+                done=True
             return obs,reward, done
-        reward -= (0.0025 * distance + 0.015 * area_difference + 0.015 * rotation)
+        reward+= np.exp(-(0.0025 * distance + 0.015 * area_difference + 0.015 * rotation))
         return obs,reward, done
 
     def render(self):
