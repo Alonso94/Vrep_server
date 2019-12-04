@@ -18,7 +18,7 @@ class rozum_sim:
 
         self.action_space=spaces.Box(low=-5,high=5,shape=[self.action_dim])
 #         self.observation_space=spaces.Box(0, 255, [256, 256, 3])
-        self.observation_space=spaces.Box(low=0,high=100,shape=[self.action_dim+4],dtype=np.float64)
+        self.observation_space=spaces.Box(low=0,high=1,shape=[self.action_dim+4],dtype=np.float64)
         self.metadata=''
         
         # os.chdir("/Vrep_server")
@@ -83,8 +83,8 @@ class rozum_sim:
         self.er_kernel = np.ones((2, 2), np.uint8)
         self.di_kernel = np.ones((2, 22), np.uint8)
         self.task_part = 0
-        self.part_1_center = np.array([300.0, 335.0])
-        self.part_2_center = np.array([320.0, 290.0])
+        self.part_1_center = np.array([120.0, 178.0])/256
+        self.part_2_center = np.array([128.0, 155.0])/256
         self.part_1_area = 0.25
         self.part_2_area = 0.75
 
@@ -234,15 +234,15 @@ class rozum_sim:
                 angle += 90
             box = cv2.boxPoints(rect)
             box = np.int0(box)
-            center = np.average(box, axis=0)
+            center = np.average(box, axis=0)/256
             area = cv2.contourArea(cnt[0])
             area_percentage=area/(256*256)
-            rotation = abs(angle)
+            rotation = abs(angle)/90
         # print(center)
         return center,area_percentage,rotation
 
     def get_reward(self, img):
-        reward = -0.01
+        reward = -0.001
         done = False
         if self.task_part == 0:
             center, area, rotation = self.image_processeing(img, self.goal_l, self.goal_u, [1, 1])
@@ -250,7 +250,7 @@ class rozum_sim:
             distance = np.linalg.norm(center - self.part_1_center, axis=-1)
             area_difference = abs(area - self.part_1_area)
             # print(distance, area_difference, rotation)
-            if distance < 3 and area_difference < 2 and rotation < 1:
+            if distance < 0.01 and area_difference < 0.02 and rotation < 1:
                 self.task_part = 1
                 reward += 2
                 self.det_goal=self.get_angles()
@@ -261,7 +261,7 @@ class rozum_sim:
             distance = np.linalg.norm(center - self.part_2_center, axis=-1)
             area_difference = abs(area - self.part_2_area)
             # print(distance,area_difference,rotation)
-            if distance < 5 and area_difference < 5 and rotation < 1:
+            if distance < 0.01 and area_difference < 0.05 and rotation < 1:
                 reward += 2
                 done = True
                 self.close_gripper()
@@ -280,7 +280,8 @@ class rozum_sim:
                 self.count=0
                 done=True
             return obs,reward, done
-        reward+= np.exp(-(0.0025 * distance + 0.015 * area_difference + 0.015 * rotation))
+#         reward+= np.exp(-(0.0025 * distance + 1.5 * area_difference + 0.015 * rotation))
+        reward=(1/(1+(distance)^1.2))*(1/(1+(area_difference)^1.2))*(1/(1+(rotation)^1.2))
         return obs,reward, done
 
     def render(self):
