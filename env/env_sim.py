@@ -95,9 +95,11 @@ class rozum_sim:
         self.init_goal_pose = self.get_position(self.goal_handle)
         # print(self.init_goal_pose)
         self.open_gripper()
+        self.part_one_acheived=False
+        self.part_two_acheived=False
+        self.out_done=True
         self.reset()
         self.tip_position = self.get_position(self.tip_handle)
-        self.count=0
 
 
     def get_handle(self, name):
@@ -149,39 +151,6 @@ class rozum_sim:
     def sample_action(self):
         return np.random.uniform(*self.action_bound, size=self.action_dim)
 
-    # def get_reward(self):
-    #     reward = -0.1
-    #     done = False
-    #     tmp_tip_position = self.get_position(self.tip_handle)
-    #     if tmp_tip_position[2] - self.tip_position[2] > 0.2:
-    #         reward -= 1
-    #         return reward, True
-    #     self.tip_position = tmp_tip_position
-    #     if self.task_part == 0:
-    #         goal_pose = self.get_position(self.cube_handle)
-    #         distance = np.linalg.norm(self.tip_position - goal_pose)
-    #         if distance <= 0.02:
-    #             self.close_gripper()
-    #             self.task_part += 1
-    #             reward += 1.0
-    #             self.move_joint(1, 0.0)
-    #             return reward, done
-    #         reward += (1 - distance)
-    #     else:
-    #         goal_pose = self.get_position(self.goal_handle)
-    #         goal = goal_pose
-    #         goal[2] += 0.1
-    #         distance = np.linalg.norm(self.tip_position - goal)
-    #         if abs(goal_pose[2] - self.tip_position[2]) < 0.02:
-    #             self.open_gripper()
-    #             reward += 1
-    #             cube_pose = self.get_position(self.cube_handle)
-    #             if abs(cube_pose[2] - goal_pose[2]) < 0.02:
-    #                 reward += 2
-    #             return reward, True
-    #         reward += (1 - distance)
-    #     return reward, done
-
     def step(self, action):
         action = np.clip(action, *self.action_bound)
         self.angles = self.get_angles()
@@ -193,22 +162,38 @@ class rozum_sim:
         img = self.get_image(self.cam_handle)
         obs,reward, done = self.get_reward(img)
         angles=self.get_angles()
-        s=np.concatenate((angles,obs),axis=None)
+        s=np.concatenate((obs,angles),axis=None)
         return s, reward, done, {}
 
     def reset(self):
-        self.task_part = 0
+        if self.part_one_acheived:
+            self.task_part=1
+            self.det_goal=self.get_angles()
+        if self.part_two_acheived:
+            self.close_gripper()
+            self.angles = self.init_angles.copy()
+            for i in range(self.DoF):
+                self.move_joint(i, self.angles[i])
+            self.angles = self.det_goal.copy()
+            for i in range(self.DoF):
+                self.move_joint(i, self.angles[i])
+            self.open_gripper()
+            self.task_part=0
         self.angles = self.init_angles
         for i in range(self.DoF):
             self.move_joint(i, self.angles[i])
-        self.open_gripper()
-        vrep.simxSetObjectPosition(self.ID, self.cube_handle, -1, self.init_pose_cube, const_v.simx_opmode_oneshot_wait)
-        vrep.simxSetObjectPosition(self.ID, self.goal_handle, -1, self.init_goal_pose, const_v.simx_opmode_oneshot_wait)
+        if self.part_two_acheived or self.out_done:
+            self.open_gripper()
+            vrep.simxSetObjectPosition(self.ID, self.cube_handle, -1, self.init_pose_cube, const_v.simx_opmode_oneshot_wait)
+            vrep.simxSetObjectPosition(self.ID, self.goal_handle, -1, self.init_goal_pose, const_v.simx_opmode_oneshot_wait)
+        self.part_one_acheived=False
+        self.part_two_acheived=False
+        self.out_done=False
         img = self.get_image(self.cam_handle)
         center, area, rotation=self.image_processeing(img, self.goal_l, self.goal_u, [1, 1])
         obs=np.array([center[0],center[1], area, rotation])
         angles=self.get_angles()
-        s=np.concatenate((angles,obs),axis=None)
+        s=np.concatenate((obs,angles),axis=None)
 #         print(s)
         return s
 
@@ -251,9 +236,9 @@ class rozum_sim:
             area_difference = abs(area - self.part_1_area)
             # print(distance, area_difference, rotation)
             if distance < 0.01 and area_difference < 0.02 and rotation < 1:
-                self.task_part = 1
+                self.part_one_acheived=True
                 reward += 2
-                self.det_goal=self.get_angles()
+                done=True
                 return obs,reward, done
         else:
             center, area, rotation = self.image_processeing(img, self.cube_l, self.cube_u, [1, 1])
@@ -262,26 +247,17 @@ class rozum_sim:
             area_difference = abs(area - self.part_2_area)
             # print(distance,area_difference,rotation)
             if distance < 0.01 and area_difference < 0.05 and rotation < 1:
+                self.part_two_acheived=True
                 reward += 2
                 done = True
-                self.close_gripper()
                 return obs,reward, done
-                self.angles = self.init_angles.copy()
-                for i in range(self.DoF):
-                    self.move_joint(i, self.angles[i])
-                self.angles = self.det_goal.copy()
-                for i in range(self.DoF):
-                    self.move_joint(i, self.angles[i])
-                self.open_gripper()
         if obs[2]<0.01:
-            reward-=1
-            self.count+=1
-            if self.count>20:
-                self.count=0
-                done=True
+            reward-=2
+            self.out_done=True
+            done=True
             return obs,reward, done
 #         reward+= np.exp(-(0.0025 * distance + 1.5 * area_difference + 0.015 * rotation))
-        reward=(1/(1+(distance)^1.2))*(1/(1+(area_difference)^1.2))*(1/(1+(rotation)^1.2))
+        reward=(1/(1+math.pow(distance,1.2)))*(1/(1+math.pow(area_difference,1.2)))*(1/(1+math.pow(rotation,1.2)))
         return obs,reward, done
 
     def render(self):
