@@ -95,9 +95,6 @@ class rozum_sim:
         self.init_goal_pose = self.get_position(self.goal_handle)
         # print(self.init_goal_pose)
         self.open_gripper()
-        self.part_one_acheived=False
-        self.part_two_acheived=False
-        self.out_done=True
         self.reset()
         self.tip_position = self.get_position(self.tip_handle)
 
@@ -162,38 +159,22 @@ class rozum_sim:
         img = self.get_image(self.cam_handle)
         obs,reward, done = self.get_reward(img)
         angles=self.get_angles()
-        s=np.concatenate((obs,angles),axis=None)
+        s=np.concatenate((angles,obs),axis=None)
         return s, reward, done, {}
 
-    def reset(self):
-        if self.part_one_acheived:
-            self.task_part=1
-            self.det_goal=self.get_angles()
-        if self.part_two_acheived:
-            self.close_gripper()
-            self.angles = self.init_angles.copy()
-            for i in range(self.DoF):
-                self.move_joint(i, self.angles[i])
-            self.angles = self.det_goal.copy()
-            for i in range(self.DoF):
-                self.move_joint(i, self.angles[i])
-            self.open_gripper()
-            self.task_part=0
+    def reset(self):            
+        self.task_part=0
         self.angles = self.init_angles
         for i in range(self.DoF):
             self.move_joint(i, self.angles[i])
-        if self.part_two_acheived or self.out_done:
-            self.open_gripper()
-            vrep.simxSetObjectPosition(self.ID, self.cube_handle, -1, self.init_pose_cube, const_v.simx_opmode_oneshot_wait)
-            vrep.simxSetObjectPosition(self.ID, self.goal_handle, -1, self.init_goal_pose, const_v.simx_opmode_oneshot_wait)
-        self.part_one_acheived=False
-        self.part_two_acheived=False
-        self.out_done=False
+        self.open_gripper()
+        vrep.simxSetObjectPosition(self.ID, self.cube_handle, -1, self.init_pose_cube, const_v.simx_opmode_oneshot_wait)
+        vrep.simxSetObjectPosition(self.ID, self.goal_handle, -1, self.init_goal_pose, const_v.simx_opmode_oneshot_wait)
         img = self.get_image(self.cam_handle)
         center, area, rotation=self.image_processeing(img, self.goal_l, self.goal_u, [1, 1])
         obs=np.array([center[0],center[1], area, rotation])
         angles=self.get_angles()
-        s=np.concatenate((obs,angles),axis=None)
+        s=np.concatenate((angles,obs),axis=None)
 #         print(s)
         return s
 
@@ -235,10 +216,10 @@ class rozum_sim:
             distance = np.linalg.norm(center - self.part_1_center, axis=-1)
             area_difference = abs(area - self.part_1_area)
             # print(distance, area_difference, rotation)
-            if distance < 0.01 and area_difference < 0.02 and rotation < 1:
-                self.part_one_acheived=True
+            if distance < 0.01 and area > self.part_1_area and rotation < 1:
+                self.task_part=1
+                self.det_goal=self.get_angles()
                 reward += 2
-                done=True
                 return obs,reward, done
         else:
             center, area, rotation = self.image_processeing(img, self.cube_l, self.cube_u, [1, 1])
@@ -246,18 +227,24 @@ class rozum_sim:
             distance = np.linalg.norm(center - self.part_2_center, axis=-1)
             area_difference = abs(area - self.part_2_area)
             # print(distance,area_difference,rotation)
-            if distance < 0.01 and area_difference < 0.05 and rotation < 1:
-                self.part_two_acheived=True
+            if distance < 0.01 and area > self.part_2_area and rotation < 1:
                 reward += 2
                 done = True
+                self.close_gripper()
+                self.angles = self.init_angles.copy()
+                for i in range(self.DoF):
+                    self.move_joint(i, self.angles[i])
+                self.angles = self.det_goal.copy()
+                for i in range(self.DoF):
+                    self.move_joint(i, self.angles[i])
+                self.open_gripper()
                 return obs,reward, done
         if obs[2]<0.01:
             reward-=2
-            self.out_done=True
             done=True
             return obs,reward, done
 #         reward+= np.exp(-(0.0025 * distance + 1.5 * area_difference + 0.015 * rotation))
-        reward=(1/(1+math.pow(distance,1.2)))*(1/(1+math.pow(area_difference,1.2)))*(1/(1+math.pow(rotation,1.2)))
+        reward=3*(1/(1+math.pow(distance,1.2)))+(1/(1+math.pow(area_difference,1.2)))+0.5*(1/(1+math.pow(rotation,1.2)))
         return obs,reward, done
 
     def render(self):
