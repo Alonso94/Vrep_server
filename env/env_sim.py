@@ -17,8 +17,9 @@ class rozum_sim:
         self.angles_bound = [-180,180]
 
         self.action_space=spaces.Box(low=-5,high=5,shape=[self.action_dim])
-#         self.observation_space=spaces.Box(0, 255, [256, 256, 3])
-        self.observation_space=spaces.Box(low=0,high=1,shape=[self.action_dim+4],dtype=np.float64)
+#         self.observation_space=spaces.Box(0, 1, [256, 256, 3])
+        self.observation_space=spaces.Box(0,1,[256,256,1])+spaces.Box(0,1,[4],dtype=np.float64)
+#         self.observation_space=spaces.Box(low=0,high=1,shape=[self.action_dim+4],dtype=np.float64)
         self.metadata=''
         
         # os.chdir("/Vrep_server")
@@ -81,12 +82,13 @@ class rozum_sim:
         self.cube_l = (55, 50, 50)
         self.cube_u = (80, 255, 255)
         self.er_kernel = np.ones((2, 2), np.uint8)
-        self.di_kernel = np.ones((2, 22), np.uint8)
+        self.di_kernel = np.ones((2, 2), np.uint8)
         self.task_part = 0
         self.part_1_center = np.array([120.0, 178.0])/256
         self.part_2_center = np.array([128.0, 155.0])/256
         self.part_1_area = 0.25
         self.part_2_area = 0.75
+        self.target=np.array([120.0/256, 178.0/256,0.25,0.0])
 
         self.init_angles = self.get_angles()
 
@@ -157,13 +159,14 @@ class rozum_sim:
         for i in range(self.DoF):
             self.move_joint(i, self.angles[i])
         img = self.get_image(self.cam_handle)
-        obs,reward, done = self.get_reward(img)
+        obs,reward, done,binary = self.get_reward(img)
         angles=self.get_angles()
         s=np.concatenate((angles,obs),axis=None)
-        return s, reward, done, {}
+        return (binary,self.target), reward, done, {}
 
     def reset(self):            
         self.task_part=0
+        self.target=np.array([120.0/256, 178.0/256,0.25,0.0])
         self.angles = self.init_angles
         for i in range(self.DoF):
             self.move_joint(i, self.angles[i])
@@ -171,12 +174,12 @@ class rozum_sim:
         vrep.simxSetObjectPosition(self.ID, self.cube_handle, -1, self.init_pose_cube, const_v.simx_opmode_oneshot_wait)
         vrep.simxSetObjectPosition(self.ID, self.goal_handle, -1, self.init_goal_pose, const_v.simx_opmode_oneshot_wait)
         img = self.get_image(self.cam_handle)
-        center, area, rotation=self.image_processeing(img, self.goal_l, self.goal_u, [1, 1])
+        center, area, rotation,binary=self.image_processeing(img, self.goal_l, self.goal_u, [1, 1])
         obs=np.array([center[0],center[1], area, rotation])
         angles=self.get_angles()
         s=np.concatenate((angles,obs),axis=None)
 #         print(s)
-        return s
+        return (binary,self.target)
 
     def image_processeing(self,img,lower,upper,num_iter):
         hsv = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
@@ -205,24 +208,29 @@ class rozum_sim:
             area_percentage=area/(256*256)
             rotation = abs(angle)/90
         # print(center)
-        return center,area_percentage,rotation
+        binary=binary[...,np.newaxis]
+        return center,area_percentage,rotation,binary
 
     def get_reward(self, img):
         reward = -0.001
         done = False
         if self.task_part == 0:
-            center, area, rotation = self.image_processeing(img, self.goal_l, self.goal_u, [1, 1])
+            center, area, rotation,binary = self.image_processeing(img, self.goal_l, self.goal_u, [1, 1])
             obs=np.array([center[0],center[1], area, rotation])
             distance = np.linalg.norm(center - self.part_1_center, axis=-1)
             area_difference = abs(area - self.part_1_area)
             # print(distance, area_difference, rotation)
             if distance < 0.01 and area > self.part_1_area and rotation < 1:
                 self.task_part=1
+                self.target=np.array([128.0/256, 155.0/256,0.25,0.0])
                 self.det_goal=self.get_angles()
+                self.angles = self.init_angles.copy()
+                for i in range(self.DoF):
+                    self.move_joint(i, self.angles[i])
                 reward += 2
-                return obs,reward, done
+                return obs,reward, done,binary
         else:
-            center, area, rotation = self.image_processeing(img, self.cube_l, self.cube_u, [1, 1])
+            center, area, rotation,binary = self.image_processeing(img, self.cube_l, self.cube_u, [1, 1])
             obs=np.array([center[0],center[1], area, rotation])
             distance = np.linalg.norm(center - self.part_2_center, axis=-1)
             area_difference = abs(area - self.part_2_area)
@@ -238,14 +246,14 @@ class rozum_sim:
                 for i in range(self.DoF):
                     self.move_joint(i, self.angles[i])
                 self.open_gripper()
-                return obs,reward, done
+                return obs,reward, done,binary
         if obs[2]<0.01:
             reward-=2
             done=True
-            return obs,reward, done
+            return obs,reward, done,binary
 #         reward+= np.exp(-(0.0025 * distance + 1.5 * area_difference + 0.015 * rotation))
-        reward=3*(1/(1+math.pow(distance,1.2)))+(1/(1+math.pow(area_difference,1.2)))+0.5*(1/(1+math.pow(rotation,1.2)))
-        return obs,reward, done
+        reward=(1/(1+math.pow(distance,1.2)))*(1/(1+math.pow(area_difference,1.2)))*(1/(1+math.pow(rotation,1.2)))
+        return obs,reward, done,binary
 
     def render(self):
         im=self.get_image(self.render_handle)
