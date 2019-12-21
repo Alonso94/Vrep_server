@@ -20,7 +20,7 @@ class rozum_sim:
 #         self.observation_space=spaces.Box(0, 1, [256, 256, 3])
 #         self.observation_space=spaces.Box(0,1,[256,256,1])#+spaces.Box(0,1,[4],dtype=np.float64)
 #         self.observation_space=spaces.Box(low=0,high=1,shape=[self.action_dim+4],dtype=np.float64)
-        self.observation_space=spaces.Box(low=0,high=100,shape=[self.action_dim+4+4],dtype=np.float64)
+        self.observation_space=spaces.Box(low=0,high=100,shape=[self.action_dim+4],dtype=np.float64)
         self.metadata=''
         
         # os.chdir("/Vrep_server")
@@ -99,8 +99,9 @@ class rozum_sim:
         # print(self.init_goal_pose)
         self.open_gripper()
         self.t=0
-        self.reset()
+        self.s=self.reset()
         self.tip_position = self.get_position(self.tip_handle)
+#         self.old_s=s
 
 
     def get_handle(self, name):
@@ -164,14 +165,15 @@ class rozum_sim:
         img = self.get_image(self.cam_handle)
         obs,reward, done,binary = self.get_reward(img)
         angles=self.get_angles()
-        s=np.concatenate((angles,obs,self.target),axis=None)
-        return s, reward, done, {}
+        self.old_s=self.s
+        self.s=np.concatenate([obs-self.target,angles],axis=None)
+        return self.s, reward, done, {}
 
     def reset(self):
         self.t=0
         self.task_part=0
         self.target=np.array([120.0/256, 178.0/256,0.25,0.0])
-        self.angles = self.init_angles
+        self.angles = self.init_angles.copy()
         for i in range(self.DoF):
             self.move_joint(i, self.angles[i])
         self.open_gripper()
@@ -181,9 +183,10 @@ class rozum_sim:
         center, area, rotation,binary=self.image_processeing(img, self.goal_l, self.goal_u, [1, 1])
         obs=np.array([center[0],center[1], area, rotation])
         angles=self.get_angles()
-        s=np.concatenate((angles,obs,self.target),axis=None)
+        self.s=np.concatenate([obs-self.target,angles],axis=None)
+        self.old_s=self.s
 #         print(s)
-        return s
+        return self.s
 
     def image_processeing(self,img,lower,upper,num_iter):
         hsv = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
@@ -262,7 +265,7 @@ class rozum_sim:
 
     def get_reward(self, img):
         done=False
-        time_discount=self.t/200
+        time_discount=1-self.t/300
         if self.task_part == 0:
             center, area, rotation,binary = self.image_processeing(img, self.goal_l, self.goal_u, [1, 1])
             obs=np.array([center[0],center[1], area, rotation])
@@ -277,7 +280,7 @@ class rozum_sim:
             done=True
             reward=-10
             return obs,reward,done,binary
-        if area_difference>0.25:
+        if area>0.45 or area<0.01:
             done=True
             reward=-100
             return obs,reward,done,binary
@@ -304,12 +307,14 @@ class rozum_sim:
                             self.move_joint(i, self.angles[i])
                         self.open_gripper()
                 else:
-                    reward=-10*abs(rotation)
+                    reward=-10*rotation
             else:
-                reward=-100*area_difference
+                reward=-10*area_difference
         else:
             distance_reward=1-math.pow(distance,0.4)
-            reward=distance_reward*time_discount
+            area_reward=math.pow(1-area_difference,1/distance)
+            rot_reward=math.pow(1-rotation,1/distance)
+            reward=distance_reward*area_reward*time_discount
         if self.task_part==1:
             reward+=100
         return obs,reward,done,binary
